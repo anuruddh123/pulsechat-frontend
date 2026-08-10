@@ -20,3 +20,12 @@ export const axiosInstance = axios.create({
   baseURL: getApiBaseURL(),
   withCredentials: true,
 });
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
