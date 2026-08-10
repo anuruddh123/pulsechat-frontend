@@ -5,9 +5,15 @@ const getApiBaseURL = () => {
     return "https://pulsechat-backend-h4qt.onrender.com/api";
   }
 
-  const envUrl = import.meta.env.VITE_API_URL || "https://pulsechat-backend-h4qt.onrender.com";
+  const envUrl =
+    import.meta.env.VITE_API_URL ||
+    "https://pulsechat-backend-h4qt.onrender.com";
+
   const normalizedUrl = envUrl.replace(/\/+$/, "");
-  return normalizedUrl.endsWith("/api") ? normalizedUrl : `${normalizedUrl}/api`;
+
+  return normalizedUrl.endsWith("/api")
+    ? normalizedUrl
+    : `${normalizedUrl}/api`;
 };
 
 export const axiosInstance = axios.create({
